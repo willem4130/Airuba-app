@@ -267,9 +267,46 @@ bun run start
 
 Ensure all environment variables are set in production.
 
+## AI Chatbot
+
+This application includes a production-ready AI chatbot powered by Vercel AI SDK.
+
+### Features
+
+- **Streaming Responses**: Real-time AI responses with streaming
+- **Multiple AI Models**: Support for Claude (Anthropic) and GPT (OpenAI)
+- **Chat History**: Persistent chat history stored in PostgreSQL
+- **Markdown Support**: Rich text rendering with syntax highlighting
+- **Type-Safe**: Full type safety from API to UI
+
+### Configuration
+
+Add your AI provider API keys to `.env`:
+
+```bash
+# Anthropic Claude (recommended)
+ANTHROPIC_API_KEY=sk-ant-...
+
+# OpenAI GPT (optional)
+OPENAI_API_KEY=sk-...
+```
+
+### Usage
+
+1. Navigate to `/chat` route
+2. Start chatting with the AI
+3. Chat history is automatically saved to your database
+
+### Customization
+
+- **Models**: Edit `src/lib/ai/models.ts` to add/remove models
+- **UI**: Customize `src/components/chat/chat-interface.tsx`
+- **API**: Modify `src/app/api/chat/route.ts` for custom behavior
+
 ## Important Notes
 
 - **Environment Variables**: Always set `NEXTAUTH_SECRET` in production
+- **AI API Keys**: At least one AI provider key (ANTHROPIC_API_KEY or OPENAI_API_KEY) required for chat
 - **Database**: Ensure PostgreSQL is accessible from your deployment environment
 - **Git Hooks**: Husky will run linting on pre-commit
 - **Type Safety**: The entire stack is type-safe from DB to UI

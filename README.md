@@ -303,6 +303,56 @@ OPENAI_API_KEY=sk-...
 - **UI**: Customize `src/components/chat/chat-interface.tsx`
 - **API**: Modify `src/app/api/chat/route.ts` for custom behavior
 
+## File Upload
+
+This application includes production-ready file upload powered by UploadThing.
+
+### Features
+
+- **Cloud Storage**: Files automatically uploaded to UploadThing CDN
+- **Multiple Upload Modes**: Button and drag-and-drop interfaces
+- **File Validation**: Type and size restrictions enforced
+- **Database Integration**: File metadata stored in PostgreSQL
+- **Access Control**: User authentication required
+- **File Management**: View, download, and delete uploaded files
+
+### Configuration
+
+1. Create an account at [uploadthing.com](https://uploadthing.com)
+2. Create a new app and get your credentials
+3. Add to `.env`:
+
+```bash
+UPLOADTHING_SECRET=sk_live_...
+UPLOADTHING_APP_ID=your_app_id
+```
+
+### Usage
+
+1. Navigate to `/files` route
+2. Choose upload mode (Button or Dropzone)
+3. Select upload endpoint:
+   - **Image Uploader**: Single image up to 4MB
+   - **Multiple Files**: Up to 10 images or 5 PDFs
+   - **Profile Picture**: Single image up to 2MB
+4. Upload your files
+5. Files appear in the grid below with preview, download, and delete options
+
+### File Routes
+
+Three upload endpoints are configured in `src/lib/uploadthing/core.ts`:
+
+- **imageUploader**: Single images (max 4MB)
+- **multipleFileUploader**: Multiple images/PDFs (10 images or 5 PDFs)
+- **profilePictureUploader**: Profile pictures (max 2MB)
+
+### Customization
+
+- **File Types**: Edit `src/lib/uploadthing/core.ts` to add video, audio, etc.
+- **Size Limits**: Adjust `maxFileSize` in core configuration
+- **Upload Count**: Change `maxFileCount` per endpoint
+- **UI**: Customize components in `src/components/files/`
+
 ## Important Notes
 
 - **Environment Variables**: Always set `NEXTAUTH_SECRET` in production

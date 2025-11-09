@@ -53,6 +53,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   chats         Chat[]
+  files         File[]
 
   @@map("users")
 }
@@ -93,4 +94,22 @@ model Message {
 
   @@index([chatId])
   @@map("messages")
+}
+
+// File Upload Models
+
+model File {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  name      String
+  url       String
+  key       String   @unique // UploadThing file key
+  size      Int      // File size in bytes
+  type      String   // MIME type
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("files")
 }

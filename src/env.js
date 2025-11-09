@@ -25,6 +25,9 @@ export const env = createEnv({
     // AI Provider API Keys
     ANTHROPIC_API_KEY: z.string().optional(),
     OPENAI_API_KEY: z.string().optional(),
+    // UploadThing
+    UPLOADTHING_SECRET: z.string().optional(),
+    UPLOADTHING_APP_ID: z.string().optional(),
     // Add OAuth provider credentials here when needed
     // GITHUB_CLIENT_ID: z.string(),
     // GITHUB_CLIENT_SECRET: z.string(),
@@ -50,6 +53,8 @@ export const env = createEnv({
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY,
     OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+    UPLOADTHING_SECRET: process.env.UPLOADTHING_SECRET,
+    UPLOADTHING_APP_ID: process.env.UPLOADTHING_APP_ID,
     // GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
     // GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
   },

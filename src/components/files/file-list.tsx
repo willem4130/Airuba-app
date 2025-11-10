@@ -43,7 +43,7 @@ export function FileList({ files }: FileListProps) {
       } else {
         alert("Failed to delete file");
       }
-    } catch (error) {
+    } catch {
       alert("Error deleting file");
     }
   };

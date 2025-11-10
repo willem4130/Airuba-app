@@ -15,7 +15,7 @@ export const ourFileRouter = {
     },
   })
     // Set permissions and file types for this FileRoute
-    .middleware(async ({ req }) => {
+    .middleware(async () => {
       // This code runs on your server before upload
       const session = await auth();
 
@@ -57,7 +57,7 @@ export const ourFileRouter = {
       maxFileCount: 5,
     },
   })
-    .middleware(async ({ req }) => {
+    .middleware(async () => {
       const session = await auth();
       if (!session?.user) throw new UploadThingError("Unauthorized");
       return { userId: session.user.id };
@@ -86,7 +86,7 @@ export const ourFileRouter = {
       maxFileCount: 1,
     },
   })
-    .middleware(async ({ req }) => {
+    .middleware(async () => {
       const session = await auth();
       if (!session?.user) throw new UploadThingError("Unauthorized");
       return { userId: session.user.id };

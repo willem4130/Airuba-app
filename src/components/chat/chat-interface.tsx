@@ -14,13 +14,20 @@ interface ChatInterfaceProps {
 }
 
 export function ChatInterface({ chatId }: ChatInterfaceProps) {
-  const { messages, input, handleInputChange, handleSubmit, isLoading, error } =
-    useChat({
-      api: "/api/chat",
-      body: {
-        chatId,
-      },
-    });
+  const {
+    messages,
+    input,
+    handleInputChange,
+    handleSubmit,
+    isLoading,
+    error,
+    setInput,
+  } = useChat({
+    api: "/api/chat",
+    body: {
+      chatId,
+    },
+  });
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -38,11 +45,51 @@ export function ChatInterface({ chatId }: ChatInterfaceProps) {
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.length === 0 && (
           <div className="flex h-full items-center justify-center">
-            <div className="text-center">
-              <h2 className="text-2xl font-semibold mb-2">
-                Start a conversation
+            <div className="text-center max-w-2xl px-4">
+              <h2 className="text-3xl font-semibold mb-2">
+                Welcome to Your Aruba Relocation Assistant
               </h2>
-              <p className="text-muted-foreground">Ask me anything!</p>
+              <p className="text-muted-foreground mb-8">
+                I&apos;m here to help answer your questions about moving to
+                Aruba. Ask me anything about visas, housing, employment, or
+                island life!
+              </p>
+              <div className="grid gap-3 text-left">
+                <button
+                  onClick={() =>
+                    setInput(
+                      "What visa requirements do I need to move to Aruba?"
+                    )
+                  }
+                  className="p-4 text-sm border rounded-lg hover:bg-accent text-left transition-colors"
+                >
+                  📋 What visa requirements do I need to move to Aruba?
+                </button>
+                <button
+                  onClick={() =>
+                    setInput("What's the cost of living in Aruba?")
+                  }
+                  className="p-4 text-sm border rounded-lg hover:bg-accent text-left transition-colors"
+                >
+                  💰 What&apos;s the cost of living in Aruba?
+                </button>
+                <button
+                  onClick={() => setInput("How do I find housing in Aruba?")}
+                  className="p-4 text-sm border rounded-lg hover:bg-accent text-left transition-colors"
+                >
+                  🏠 How do I find housing in Aruba?
+                </button>
+                <button
+                  onClick={() =>
+                    setInput(
+                      "What are the job opportunities for expats in Aruba?"
+                    )
+                  }
+                  className="p-4 text-sm border rounded-lg hover:bg-accent text-left transition-colors"
+                >
+                  💼 What are the job opportunities for expats in Aruba?
+                </button>
+              </div>
             </div>
           </div>
         )}
